@@ -7,7 +7,7 @@ env:
     - TEST_SCRIPT="test.sh"
     - BUILD_DIR="$PWD/s390x/18.06"
     - REPO="quay.io/ibmz/docker"
-    - TAG="$REPO:18.06.3"
+    - TAG="$REPO:18.06.3-ce"
 before_script: 
   - cd $BUILD_DIR && chmod +x *
   - cd $TEST_DIR && chmod +x $TEST_SCRIPT
