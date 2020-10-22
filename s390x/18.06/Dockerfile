@@ -21,7 +21,7 @@ RUN set -eux; \
 	apkArch="$(apk --print-arch)"; \
 	case "$apkArch" in \
 		's390x') \
-			url='https://download.docker.com/linux/static/stable/s390x/docker-19.03.3-ce.tgz'; \
+			url='https://download.docker.com/linux/static/stable/s390x/docker-18.06.3-ce.tgz'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture ($apkArch)"; exit 1 ;; \
 	esac; \
