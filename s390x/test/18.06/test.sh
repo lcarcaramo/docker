@@ -49,7 +49,5 @@ suite_end () {
 
 suite_start
         print_test_case "It can run with docker.sock mounted in read only mode:"
-                build "docker"
-                docker run --rm --name docker "docker"
-                cleanup "docker"
+                docker run --rm --name docker "quay.io/ibmz/docker:18.06.3-ce"
 suite_end
