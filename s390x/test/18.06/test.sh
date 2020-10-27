@@ -2,15 +2,54 @@
 
 set -e
 
-export ANSI_YELLOW="\e[1;33m"
+export ANSI_YELLOW_BOLD="\e[1;33m"
 export ANSI_GREEN="\e[32m"
+export ANSI_YELLOW_BACKGROUND="\e[1;7;33m"
+export ANSI_GREEN_BACKGROUND="\e[1;7;32m"
+export ANSI_CYAN="\e[36m"
 export ANSI_RESET="\e[0m"
+export DOCKERFILE_TOP="**************************************** DOCKERFILE ******************************************"
+export DOCKERFILE_BOTTOM="**********************************************************************************************"
+export TEST_SUITE_START="**************************************** SMOKE TESTS *****************************************"
+export TEST_SUITE_END="************************************** TEST SUCCESSFUL ***************************************"
 
-echo -e "\n $ANSI_YELLOW *** FUNCTIONAL TEST(S) *** $ANSI_RESET \n"
+# Pass in path to folder where Dockerfile lives
+print_dockerfile () {
+        echo -e "\n$ANSI_CYAN$DOCKERFILE_TOP\n$(<$1/Dockerfile)\n$DOCKERFILE_BOTTOM $ANSI_RESET\n"
+}
 
-echo -e "$ANSI_YELLOW Docker is running - docker.sock is mounted with read only mode: $ANSI_RESET"
-docker build -t test/run-app/quay.io/ibmz/docker docker
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro test/run-app/quay.io/ibmz/docker version
-docker rmi test/run-app/quay.io/ibmz/docker
+# Pass in test case message
+print_test_case () {
+        echo -e "\n$ANSI_YELLOW_BOLD$1 $ANSI_RESET"
+}
 
-echo -e "\n $ANSI_GREEN *** FUNCTIONAL TEST(S) COMPLETED SUCESSFULLY *** $ANSI_RESET \n"
+print_success () {
+        echo -e "\n $ANSI_GREEN$1 $ANSI_RESET \n"
+
+}
+
+# Pass in path to folder where Dockerfile lives
+build () {
+        print_dockerfile $1
+        docker build -q -t $1 $1
+}
+
+cleanup () {
+        docker rmi $1
+}
+
+suite_start () {
+        echo -e "\n$ANSI_YELLOW_BACKGROUND$TEST_SUITE_START$ANSI_RESET \n"
+}
+
+suite_end () {
+        echo -e "\n$ANSI_GREEN_BACKGROUND$TEST_SUITE_END$ANSI_RESET \n"
+}
+
+
+suite_start
+        print_test_case "It can run with docker.sock mounted in read only mode:"
+                build "docker"
+                docker run --rm --name docker "docker"
+                cleanup "docker"
+suite_end
