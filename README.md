@@ -16,7 +16,7 @@ Before running Docker-in-Docker, be sure to read through [Jérôme Petazzoni's e
 
 If you are still convinced that you need Docker-in-Docker and not just access to a container's host Docker server, then read on.
 
-## TLS
+# TLS
 
 **Warning:** in 18.09, this behavior is disabled by default (for compatibility). If you use `--network=host`, shared network namespaces (as in Kubernetes pods), or otherwise have network access to the container (including containers started within the `dind` instance via their gateway interface), this is a potential security issue (which can lead to access to the host system, for example). It is recommended to enable TLS by setting the variable to an appropriate value (`-e DOCKER_TLS_CERTDIR=/certs` or similar). In 19.03+, this behavior is enabled by default.
 
