@@ -30,7 +30,7 @@ Inside the directory specified by `DOCKER_TLS_CERTDIR`, the entrypoint scripts w
 
 In order to make use of this functionality from a "client" container, at least the `client` subdirectory of the `$DOCKER_TLS_CERTDIR` directory needs to be shared (as illustrated in the following examples).
 
-#docker:dind
+# docker:dind
 *not available - requires privileged mode* <br />
 Running docker:dind and using this variant as a docker daemon requires `--privileged` mode, which is currently **not enabled** on ZCX for security purposes.
 
