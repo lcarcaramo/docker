@@ -34,7 +34,7 @@ In order to make use of this functionality from a "client" container, at least t
 *not available - requires privileged mode* <br />
 Running docker:dind and using this variant as a docker daemon requires `--privileged` mode, which is currently **not enabled** on ZCX for security purposes.
 
-## Run Image
+# Run Image
 **mount `var/run/docker.sock` with read-only mode**
 ```console
 $ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/ibmz/docker:18.06.3-ce version
@@ -66,7 +66,7 @@ Server:
   Version:          0.18.0
 ```
 
-## Where to Store Data
+# Where to Store Data
 
 Let Docker manage the storage of your data [by writing to disk on the host system using its own internal volume management](https://docs.docker.com/engine/tutorials/dockervolumes/#adding-a-data-volume). This is the default and is easy and fairly transparent to the user. The downside is that the files may be hard to locate for tools and applications that run directly on the host system, i.e. outside containers.
 
