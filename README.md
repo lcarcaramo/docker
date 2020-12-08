@@ -1,8 +1,11 @@
 # Tags
 
-> _Built from [`quay.io/ibmz/alpine:3.12`](https://quay.io/repository/ibmz/alpine?tab=info)_
--	[`18.06.3-ce`](https://github.com/lcarcaramo/docker/blob/master/s390x/18.06/Dockerfile) - [![Build Status](https://travis-ci.com/lcarcaramo/docker.svg?branch=master)](https://travis-ci.com/lcarcaramo/docker)
-# What is Docker in Docker?
+> _Built from [`quay.io/ibm/alpine:3.12`](https://quay.io/repository/ibm/alpine?tab=info)_
+-	`18.06.3-ce` - [![Build Status](https://travis-ci.com/lcarcaramo/docker.svg?branch=master)](https://travis-ci.com/lcarcaramo/docker)
+
+### __[Original Source Code](https://github.com/docker-library/docker)__
+
+# Docker in Docker
 
 Although running Docker inside Docker is generally not recommended, there are some legitimate use cases, such as development of Docker itself.
 
@@ -37,7 +40,7 @@ Running docker:dind and using this variant as a docker daemon requires `--privil
 # Run Image
 **mount `var/run/docker.sock` with read-only mode**
 ```console
-$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/ibmz/docker:18.06.3-ce version
+$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/ibm/docker:18.06.3-ce version
 Client:
  Version:           18.06.3-ce
  API version:       1.38
@@ -84,7 +87,7 @@ It's **important to note** however, that bind mounts with write mode enabled are
 2.	Start your `docker` container like this:
 
 	```console
-	$ docker run -it --name some-docker -v <your_volume>:/var/lib/docker -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/ibmz/docker:18.06.3-ce
+	$ docker run -it --name some-docker -v <your_volume>:/var/lib/docker -v /var/run/docker.sock:/var/run/docker.sock:ro quay.io/ibm/docker:18.06.3-ce
 	```
 
 The `-v <your_volume>:/var/lib/docker` part of the command mounts the docker volume you've created from underlying host system as `/var/lib/docker` inside the container, where Docker by default will write its data files.
